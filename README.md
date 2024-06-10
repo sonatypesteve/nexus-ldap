@@ -4,6 +4,7 @@ Docker compose for Nexus 3 and ldap
 This assumes you have Docker Compose installed. I use Docker Desktop and Ubuntu in WLS2.
 
 * Edit [docker-compose.yaml](docker-compose.yaml) as needed.
+* Edit [nexus-config.sh](scripts%2Fnexus-config.sh) as needed.
 * `cd scripts`
 *  `./nexus-config.sh`
 
