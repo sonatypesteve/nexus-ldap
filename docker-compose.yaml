@@ -1,8 +1,7 @@
-version: "3"
-
 services:
   nexus:
     image: sonatype/nexus3
+    container_name: nexus-ldap
     volumes:
       - "nexus-data:/nexus-data"
     ports:
