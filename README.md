@@ -5,7 +5,7 @@ This assumes you have Docker Compose installed. I use Docker Desktop and Ubuntu 
 
 * Edit [docker-compose.yaml](docker-compose.yaml) as needed.
 * `cd scripts`
-*  ./nexus-config.sh
+*  `./nexus-config.sh`
 
 ```sgoldsmith@sonatype:/mnt/d/IdeaProjects/nexus-ldap/scripts$ ./nexus-config.sh
 [+] Running 3/3
