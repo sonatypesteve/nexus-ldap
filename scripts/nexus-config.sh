@@ -2,7 +2,6 @@
 
 container_name="nexus-ldap"
 password_file="sonatype-work/nexus3/admin.password"
-license_file="/mnt/c/Users/StevenGoldsmith/Documents/2023-sonatype-internal-rm-lc-fw-fwfa-adp-alp-iacp-5000apps-1000rm_users-1000lc_users-1000fw_users.lic"
 
 docker-compose -f ../docker-compose.yaml up -d
 
@@ -32,10 +31,6 @@ if [ "$(docker inspect "$container_name" --format '{{.State.Status}}')" = "runni
     result=$(curl -o /dev/null -s -w "%{http_code}\n" -u admin:"$password" -X 'PUT' "http://localhost:8081/service/rest/v1/security/users/admin/change-password" -H 'accept: application/json' -H 'Content-Type: text/plain' -d 'admin123')
     if [[ "$result" == "204" ]]; then
       printf "Password changed\n"
-      result=$(curl -o /dev/null -s -w "%{http_code}\n" -u admin:admin123 -H "Accept: application/json" -H "Content-Type: application/octet-stream" --data-binary "@$license_file" "http://localhost:8081/service/rest/v1/system/license")
-      if [[ "$result" == "200" ]]; then
-       printf "License %s installed\n" "$license_file"
-      fi
     else
       printf "Password not changed\n"
     fi
