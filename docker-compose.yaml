@@ -6,8 +6,6 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_INITDB_ARGS: "--auth-host=scram-sha-256 --auth-local=scram-sha-256"
-    ports:
-      - "5432:5432"
     command:
       - "postgres"
       - "-c"
@@ -29,6 +27,8 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./scripts/nexus.sql:/docker-entrypoint-initdb.d/nexus.sql
+    ports:
+      - "5432:5432"
 
   nexus:
     image: sonatype/nexus3
@@ -50,9 +50,6 @@ services:
 
   openldap:
     image: docker.io/bitnami/openldap:latest
-    ports:
-      - '389:1389'
-      - '636:1636'
     environment:
       - LDAP_ADMIN_USERNAME=admin
       - LDAP_ADMIN_PASSWORD=admin123
@@ -62,6 +59,9 @@ services:
       - LDAP_ADMIN_DN=cn=admin,dc=nexus,dc=org
     volumes:
       - "openldap-data:/openldap-data"
+    ports:
+      - '389:1389'
+      - '636:1636'
 
 volumes:
   pgdata:
