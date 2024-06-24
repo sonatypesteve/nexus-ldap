@@ -1,5 +1,5 @@
 # nexus-ldap
-Docker compose for Nexus 3 and ldap
+Docker compose and scripts for Nexus 3, Postgres and Openldap recipe.
 
 This assumes you have Docker Compose installed. I use Docker Desktop and Ubuntu in WSL2.
 
@@ -11,12 +11,13 @@ This assumes you have Docker Compose installed. I use Docker Desktop and Ubuntu 
 
 ```
 sgoldsmith@sonatype:/mnt/d/IdeaProjects/nexus-ldap/scripts$ ./nexus-config.sh
-[+] Running 5/5
- ✔ Network nexus-ldap_default      Created                                                             0.0s
- ✔ Volume "nexus-ldap_nexus-data"  Created                                                             0.0s
- ✔ Volume "nexus-ldap_pgdata"      Created                                                             0.0s
- ✔ Container postgres              Started                                                             0.6s
- ✔ Container nexus-ldap            Started                                                             0.6s
+[+] Running 6/6
+ ✔ Volume "nexus-ldap_pgdata"         Created                                                          0.0s
+ ✔ Volume "nexus-ldap_nexus-data"     Created                                                          0.0s
+ ✔ Volume "nexus-ldap_openldap-data"  Created                                                          0.0s
+ ✔ Container nexus-ldap-openldap-1    Started                                                          0.9s
+ ✔ Container postgres                 Started                                                          0.6s
+ ✔ Container nexus-ldap               Started                                                          0.9s
 Waiting for Nexus to start.....
 Nexus up
 Changing admin password
