@@ -51,14 +51,13 @@ services:
   openldap:
     image: docker.io/bitnami/openldap:latest
     environment:
+      - LDAP_ROOT=dc=example,dc=com
       - LDAP_ADMIN_USERNAME=admin
       - LDAP_ADMIN_PASSWORD=admin123
-      - LDAP_USERS=user01,user02
-      - LDAP_PASSWORDS=password1,password2
-      - LDAP_ROOT=dc=nexus,dc=org
-      - LDAP_ADMIN_DN=cn=admin,dc=nexus,dc=org
+      - LDAP_CUSTOM_LDIF_DIR=/scripts
     volumes:
-      - "openldap-data:/openldap-data"
+      - openldap-data:/openldap-data
+      - ./scripts:/scripts
     ports:
       - '389:1389'
       - '636:1636'
