@@ -1,7 +1,10 @@
 #!/bin/bash
 
+# If the openldap container doesn't start on create it's probably because there's error(s)
+# in generated output. Use BITNAMI_DEBUG=true in docker compose file to find out why.
+
 # Define the output file
-output_file="corporate-structure.ldif"
+output_file="../ldifs/init.ldif"
 
 # Write the base structure to the LDIF file
 cat <<EOL > $output_file
@@ -91,6 +94,7 @@ done
 
 # Add groups to the Groups organizational unit
 cat <<EOL >> $output_file
+
 dn: cn=developers,ou=Groups,dc=example,dc=com
 objectClass: groupOfUniqueNames
 cn: developers

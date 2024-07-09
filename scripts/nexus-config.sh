@@ -24,9 +24,6 @@ if [ "$(docker inspect "$container_name" --format '{{.State.Status}}')" = "runni
 
   # Check if password file exists
   if docker exec "$container_name" test -f "$password_file"; then
-    # https://github.com/bitnami/containers/issues/15370
-    # Have to run docker.io/bitnami/openldap:latest second time to get LDAP_CUSTOM_LDIF_DIR to work
-    docker-compose -f ../docker-compose.yaml up openldap -d
     # Change admin password to admin123
     printf "Changing admin password\n"
     password=$(docker exec "$container_name" cat "$password_file")
