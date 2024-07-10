@@ -1,0 +1,19 @@
+services:
+  openldap:
+    image: docker.io/bitnami/openldap:latest
+    container_name: openldap
+    environment:
+      - BITNAMI_DEBUG=true
+      - LDAP_ROOT=${LDAP_ROOT}
+      - LDAP_ADMIN_USERNAME=admin
+      - LDAP_ADMIN_PASSWORD=admin123
+      - LDAP_CUSTOM_LDIF_DIR=/ldifs
+    volumes:
+      - openldap-data:/openldap-data
+      - ./ldifs:/ldifs
+    ports:
+      - '389:1389'
+      - '636:1636'
+
+volumes:
+  openldap-data:

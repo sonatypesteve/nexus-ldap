@@ -1,9 +1,10 @@
 #!/bin/bash
 
-container_name="nexus-ldap"
+container_name="nexus"
 password_file="sonatype-work/nexus3/admin.password"
 
-docker-compose -f ../docker-compose.yaml up -d
+# Combine individual compose files
+docker-compose -f ../docker-compose-openldap.yaml -f ../docker-compose-postgres.yaml -f ../docker-compose-nexus.yaml up -d
 
 # Check if the container is running
 if [ "$(docker inspect "$container_name" --format '{{.State.Status}}')" = "running" ]; then
