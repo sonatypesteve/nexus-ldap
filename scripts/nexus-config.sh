@@ -2,42 +2,60 @@
 
 container_name="nexus"
 password_file="sonatype-work/nexus3/admin.password"
+nexus_url="http://localhost:8081"
+status_endpoint="$nexus_url/service/rest/v1/status"
+change_password_endpoint="$nexus_url/service/rest/v1/security/users/admin/change-password"
 
-# Combine individual compose files
+# User and password variables
+user="admin" # Change this to the desired username
+new_password="admin123" # Change this to the desired new password
+
+# Function to check Nexus status
+check_nexus_status() {
+  curl -o /dev/null -s -w "%{http_code}\n" -X GET "$status_endpoint"
+}
+
+# Function to change Nexus admin password
+change_admin_password() {
+  curl -o /dev/null -s -w "%{http_code}\n" -u ${user}:"$1" -X PUT "$change_password_endpoint" -H 'accept: application/json' -H 'Content-Type: text/plain' -d "${new_password}"
+}
+
+# Start containers
 docker-compose -f ../docker-compose-openldap.yaml -f ../docker-compose-postgres.yaml -f ../docker-compose-nexus.yaml up -d
 
-# Check if the container is running
+# Check if Nexus container is running
 if [ "$(docker inspect "$container_name" --format '{{.State.Status}}')" = "running" ]; then
-  # Wait for Nexus to start up
+  # Wait for Nexus to start
   max_attempts=20
   attempt=0
-  printf 'Waiting for Nexus to start'
-  while [[ "$attempt" -lt "$max_attempts" ]]; do
-    printf '.'
-    result=$(curl -o /dev/null -s -w "%{http_code}\n" -X GET http://localhost:8081/service/rest/v1/status)
-    if [[ "$result" == "200" ]]; then
-        printf "\nNexus up\n"
-        break
+  echo 'Waiting for Nexus to start...'
+  while [ "$attempt" -lt "$max_attempts" ]; do
+    if [ "$(check_nexus_status)" == "200" ]; then
+      echo "Nexus is up."
+      break
     fi
     sleep 10
     ((attempt++))
   done
 
-  # Check if password file exists
+  if [ "$attempt" -eq "$max_attempts" ]; then
+    echo "Nexus did not start in time."
+    exit 1
+  fi
+
+  # Check if the admin password file exists
   if docker exec "$container_name" test -f "$password_file"; then
-    # Change admin password to admin123
-    printf "Changing admin password\n"
+    # Change admin password
+    echo "Changing ${user}'s password..."
     password=$(docker exec "$container_name" cat "$password_file")
-    # REST call to change admin password
-    result=$(curl -o /dev/null -s -w "%{http_code}\n" -u admin:"$password" -X 'PUT' "http://localhost:8081/service/rest/v1/security/users/admin/change-password" -H 'accept: application/json' -H 'Content-Type: text/plain' -d 'admin123')
-    if [[ "$result" == "204" ]]; then
-      printf "Password changed\n"
+    if [ "$(change_admin_password "$password")" == "204" ]; then
+      echo "${user}'s password changed successfully."
     else
-      printf "Password not changed\n"
+      echo "Failed to change ${user}'s password."
     fi
   else
-    printf "admin.password does not exist\n"
+    echo "Admin password file does not exist."
   fi
 else
-  printf "%s not running\n" "$container_name"
+  echo "$container_name is not running."
 fi
