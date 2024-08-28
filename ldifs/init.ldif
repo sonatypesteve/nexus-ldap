@@ -2,594 +2,226 @@ dn: dc=example,dc=com
 objectClass: top
 objectClass: dcObject
 objectClass: organization
-o: Example Corp
+o: Example Organization
 dc: example
 
-dn: ou=IT,dc=example,dc=com
+dn: ou=people,dc=example,dc=com
+objectClass: top
 objectClass: organizationalUnit
-ou: IT
+ou: people
 
-dn: ou=Development,dc=example,dc=com
+dn: ou=groups,dc=example,dc=com
+objectClass: top
 objectClass: organizationalUnit
-ou: Development
+ou: groups
 
-dn: ou=Business,dc=example,dc=com
-objectClass: organizationalUnit
-ou: Business
+dn: uid=admin,ou=people,dc=example,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: Admin User
+sn: User
+uid: admin
+mail: admin@example.com
+userPassword: admin123
 
-dn: ou=HR,dc=example,dc=com
-objectClass: organizationalUnit
-ou: HR
-
-dn: ou=Sales,dc=example,dc=com
-objectClass: organizationalUnit
-ou: Sales
-
-dn: ou=Support,dc=example,dc=com
-objectClass: organizationalUnit
-ou: Support
-
-dn: ou=Administration,dc=example,dc=com
-objectClass: organizationalUnit
-ou: Administration
-
-dn: uid=user1,ou=IT,dc=example,dc=com
+dn: uid=user1,ou=people,dc=example,dc=com
 objectClass: inetOrgPerson
 uid: user1
-cn: User user1
-sn: Lastuser1
+sn: User
+cn: User 1
 mail: user1@example.com
+userPassword: password
 
-dn: uid=user2,ou=IT,dc=example,dc=com
+dn: uid=user2,ou=people,dc=example,dc=com
 objectClass: inetOrgPerson
 uid: user2
-cn: User user2
-sn: Lastuser2
+sn: User
+cn: User 2
 mail: user2@example.com
+userPassword: password
 
-dn: uid=user3,ou=IT,dc=example,dc=com
+dn: uid=user3,ou=people,dc=example,dc=com
 objectClass: inetOrgPerson
 uid: user3
-cn: User user3
-sn: Lastuser3
+sn: User
+cn: User 3
 mail: user3@example.com
+userPassword: password
 
-dn: uid=user4,ou=IT,dc=example,dc=com
+dn: uid=user4,ou=people,dc=example,dc=com
 objectClass: inetOrgPerson
 uid: user4
-cn: User user4
-sn: Lastuser4
+sn: User
+cn: User 4
 mail: user4@example.com
+userPassword: password
 
-dn: uid=user5,ou=IT,dc=example,dc=com
+dn: uid=user5,ou=people,dc=example,dc=com
 objectClass: inetOrgPerson
 uid: user5
-cn: User user5
-sn: Lastuser5
+sn: User
+cn: User 5
 mail: user5@example.com
+userPassword: password
 
-dn: uid=user6,ou=IT,dc=example,dc=com
+dn: uid=user6,ou=people,dc=example,dc=com
 objectClass: inetOrgPerson
 uid: user6
-cn: User user6
-sn: Lastuser6
+sn: User
+cn: User 6
 mail: user6@example.com
+userPassword: password
 
-dn: uid=user7,ou=IT,dc=example,dc=com
+dn: uid=user7,ou=people,dc=example,dc=com
 objectClass: inetOrgPerson
 uid: user7
-cn: User user7
-sn: Lastuser7
+sn: User
+cn: User 7
 mail: user7@example.com
+userPassword: password
 
-dn: uid=user8,ou=IT,dc=example,dc=com
+dn: uid=user8,ou=people,dc=example,dc=com
 objectClass: inetOrgPerson
 uid: user8
-cn: User user8
-sn: Lastuser8
+sn: User
+cn: User 8
 mail: user8@example.com
+userPassword: password
 
-dn: uid=user9,ou=IT,dc=example,dc=com
+dn: uid=user9,ou=people,dc=example,dc=com
 objectClass: inetOrgPerson
 uid: user9
-cn: User user9
-sn: Lastuser9
+sn: User
+cn: User 9
 mail: user9@example.com
+userPassword: password
 
-dn: uid=user10,ou=IT,dc=example,dc=com
+dn: uid=user10,ou=people,dc=example,dc=com
 objectClass: inetOrgPerson
 uid: user10
-cn: User user10
-sn: Lastuser10
+sn: User
+cn: User 10
 mail: user10@example.com
-
-dn: uid=user1,ou=Development,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user1
-cn: User user1
-sn: Lastuser1
-mail: user1@example.com
-
-dn: uid=user2,ou=Development,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user2
-cn: User user2
-sn: Lastuser2
-mail: user2@example.com
-
-dn: uid=user3,ou=Development,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user3
-cn: User user3
-sn: Lastuser3
-mail: user3@example.com
-
-dn: uid=user4,ou=Development,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user4
-cn: User user4
-sn: Lastuser4
-mail: user4@example.com
-
-dn: uid=user5,ou=Development,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user5
-cn: User user5
-sn: Lastuser5
-mail: user5@example.com
-
-dn: uid=user6,ou=Development,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user6
-cn: User user6
-sn: Lastuser6
-mail: user6@example.com
-
-dn: uid=user7,ou=Development,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user7
-cn: User user7
-sn: Lastuser7
-mail: user7@example.com
-
-dn: uid=user8,ou=Development,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user8
-cn: User user8
-sn: Lastuser8
-mail: user8@example.com
-
-dn: uid=user9,ou=Development,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user9
-cn: User user9
-sn: Lastuser9
-mail: user9@example.com
-
-dn: uid=user10,ou=Development,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user10
-cn: User user10
-sn: Lastuser10
-mail: user10@example.com
-
-dn: uid=user11,ou=Development,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user11
-cn: User user11
-sn: Lastuser11
-mail: user11@example.com
-
-dn: uid=user12,ou=Development,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user12
-cn: User user12
-sn: Lastuser12
-mail: user12@example.com
-
-dn: uid=user13,ou=Development,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user13
-cn: User user13
-sn: Lastuser13
-mail: user13@example.com
-
-dn: uid=user14,ou=Development,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user14
-cn: User user14
-sn: Lastuser14
-mail: user14@example.com
-
-dn: uid=user15,ou=Development,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user15
-cn: User user15
-sn: Lastuser15
-mail: user15@example.com
-
-dn: uid=user1,ou=Business,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user1
-cn: User user1
-sn: Lastuser1
-mail: user1@example.com
-
-dn: uid=user2,ou=Business,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user2
-cn: User user2
-sn: Lastuser2
-mail: user2@example.com
-
-dn: uid=user3,ou=Business,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user3
-cn: User user3
-sn: Lastuser3
-mail: user3@example.com
-
-dn: uid=user4,ou=Business,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user4
-cn: User user4
-sn: Lastuser4
-mail: user4@example.com
-
-dn: uid=user5,ou=Business,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user5
-cn: User user5
-sn: Lastuser5
-mail: user5@example.com
-
-dn: uid=user6,ou=Business,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user6
-cn: User user6
-sn: Lastuser6
-mail: user6@example.com
-
-dn: uid=user7,ou=Business,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user7
-cn: User user7
-sn: Lastuser7
-mail: user7@example.com
-
-dn: uid=user8,ou=Business,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user8
-cn: User user8
-sn: Lastuser8
-mail: user8@example.com
-
-dn: uid=user9,ou=Business,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user9
-cn: User user9
-sn: Lastuser9
-mail: user9@example.com
-
-dn: uid=user10,ou=Business,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user10
-cn: User user10
-sn: Lastuser10
-mail: user10@example.com
-
-dn: uid=user11,ou=Business,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user11
-cn: User user11
-sn: Lastuser11
-mail: user11@example.com
-
-dn: uid=user12,ou=Business,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user12
-cn: User user12
-sn: Lastuser12
-mail: user12@example.com
-
-dn: uid=user13,ou=Business,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user13
-cn: User user13
-sn: Lastuser13
-mail: user13@example.com
-
-dn: uid=user14,ou=Business,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user14
-cn: User user14
-sn: Lastuser14
-mail: user14@example.com
-
-dn: uid=user15,ou=Business,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user15
-cn: User user15
-sn: Lastuser15
-mail: user15@example.com
-
-dn: uid=user16,ou=Business,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user16
-cn: User user16
-sn: Lastuser16
-mail: user16@example.com
-
-dn: uid=user17,ou=Business,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user17
-cn: User user17
-sn: Lastuser17
-mail: user17@example.com
-
-dn: uid=user18,ou=Business,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user18
-cn: User user18
-sn: Lastuser18
-mail: user18@example.com
-
-dn: uid=user19,ou=Business,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user19
-cn: User user19
-sn: Lastuser19
-mail: user19@example.com
-
-dn: uid=user20,ou=Business,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user20
-cn: User user20
-sn: Lastuser20
-mail: user20@example.com
-
-dn: uid=user1,ou=HR,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user1
-cn: User user1
-sn: Lastuser1
-mail: user1@example.com
-
-dn: uid=user2,ou=HR,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user2
-cn: User user2
-sn: Lastuser2
-mail: user2@example.com
-
-dn: uid=user3,ou=HR,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user3
-cn: User user3
-sn: Lastuser3
-mail: user3@example.com
-
-dn: uid=user4,ou=HR,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user4
-cn: User user4
-sn: Lastuser4
-mail: user4@example.com
-
-dn: uid=user5,ou=HR,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user5
-cn: User user5
-sn: Lastuser5
-mail: user5@example.com
-
-dn: uid=user6,ou=HR,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user6
-cn: User user6
-sn: Lastuser6
-mail: user6@example.com
-
-dn: uid=user7,ou=HR,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user7
-cn: User user7
-sn: Lastuser7
-mail: user7@example.com
-
-dn: uid=user8,ou=HR,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user8
-cn: User user8
-sn: Lastuser8
-mail: user8@example.com
-
-dn: uid=user1,ou=Sales,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user1
-cn: User user1
-sn: Lastuser1
-mail: user1@example.com
-
-dn: uid=user2,ou=Sales,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user2
-cn: User user2
-sn: Lastuser2
-mail: user2@example.com
-
-dn: uid=user3,ou=Sales,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user3
-cn: User user3
-sn: Lastuser3
-mail: user3@example.com
-
-dn: uid=user4,ou=Sales,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user4
-cn: User user4
-sn: Lastuser4
-mail: user4@example.com
-
-dn: uid=user5,ou=Sales,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user5
-cn: User user5
-sn: Lastuser5
-mail: user5@example.com
-
-dn: uid=user6,ou=Sales,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user6
-cn: User user6
-sn: Lastuser6
-mail: user6@example.com
-
-dn: uid=user7,ou=Sales,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user7
-cn: User user7
-sn: Lastuser7
-mail: user7@example.com
-
-dn: uid=user8,ou=Sales,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user8
-cn: User user8
-sn: Lastuser8
-mail: user8@example.com
-
-dn: uid=user9,ou=Sales,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user9
-cn: User user9
-sn: Lastuser9
-mail: user9@example.com
-
-dn: uid=user10,ou=Sales,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user10
-cn: User user10
-sn: Lastuser10
-mail: user10@example.com
-
-dn: uid=user11,ou=Sales,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user11
-cn: User user11
-sn: Lastuser11
-mail: user11@example.com
-
-dn: uid=user12,ou=Sales,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user12
-cn: User user12
-sn: Lastuser12
-mail: user12@example.com
-
-dn: uid=user1,ou=Support,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user1
-cn: User user1
-sn: Lastuser1
-mail: user1@example.com
-
-dn: uid=user2,ou=Support,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user2
-cn: User user2
-sn: Lastuser2
-mail: user2@example.com
-
-dn: uid=user3,ou=Support,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user3
-cn: User user3
-sn: Lastuser3
-mail: user3@example.com
-
-dn: uid=user4,ou=Support,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user4
-cn: User user4
-sn: Lastuser4
-mail: user4@example.com
-
-dn: uid=user5,ou=Support,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user5
-cn: User user5
-sn: Lastuser5
-mail: user5@example.com
-
-dn: uid=user6,ou=Support,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user6
-cn: User user6
-sn: Lastuser6
-mail: user6@example.com
-
-dn: uid=user7,ou=Support,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user7
-cn: User user7
-sn: Lastuser7
-mail: user7@example.com
-
-dn: uid=user8,ou=Support,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user8
-cn: User user8
-sn: Lastuser8
-mail: user8@example.com
-
-dn: uid=user9,ou=Support,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user9
-cn: User user9
-sn: Lastuser9
-mail: user9@example.com
-
-dn: uid=user10,ou=Support,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user10
-cn: User user10
-sn: Lastuser10
-mail: user10@example.com
-
-dn: uid=user1,ou=Administration,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user1
-cn: User user1
-sn: Lastuser1
-mail: user1@example.com
-
-dn: uid=user2,ou=Administration,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user2
-cn: User user2
-sn: Lastuser2
-mail: user2@example.com
-
-dn: uid=user3,ou=Administration,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user3
-cn: User user3
-sn: Lastuser3
-mail: user3@example.com
-
-dn: uid=user4,ou=Administration,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user4
-cn: User user4
-sn: Lastuser4
-mail: user4@example.com
-
-dn: uid=user5,ou=Administration,dc=example,dc=com
-objectClass: inetOrgPerson
-uid: user5
-cn: User user5
-sn: Lastuser5
-mail: user5@example.com
-
+userPassword: password
+
+dn: uid=dev1,ou=people,dc=example,dc=com
+objectClass: inetOrgPerson
+uid: dev1
+sn: Developer
+cn: Developer 1
+mail: dev1@example.com
+userPassword: password
+
+dn: uid=dev2,ou=people,dc=example,dc=com
+objectClass: inetOrgPerson
+uid: dev2
+sn: Developer
+cn: Developer 2
+mail: dev2@example.com
+userPassword: password
+
+dn: uid=dev3,ou=people,dc=example,dc=com
+objectClass: inetOrgPerson
+uid: dev3
+sn: Developer
+cn: Developer 3
+mail: dev3@example.com
+userPassword: password
+
+dn: uid=dev4,ou=people,dc=example,dc=com
+objectClass: inetOrgPerson
+uid: dev4
+sn: Developer
+cn: Developer 4
+mail: dev4@example.com
+userPassword: password
+
+dn: uid=dev5,ou=people,dc=example,dc=com
+objectClass: inetOrgPerson
+uid: dev5
+sn: Developer
+cn: Developer 5
+mail: dev5@example.com
+userPassword: password
+
+dn: uid=hr1,ou=people,dc=example,dc=com
+objectClass: inetOrgPerson
+uid: hr1
+sn: HR
+cn: HR 1
+mail: hr1@example.com
+userPassword: password
+
+dn: uid=hr2,ou=people,dc=example,dc=com
+objectClass: inetOrgPerson
+uid: hr2
+sn: HR
+cn: HR 2
+mail: hr2@example.com
+userPassword: password
+
+dn: uid=hr3,ou=people,dc=example,dc=com
+objectClass: inetOrgPerson
+uid: hr3
+sn: HR
+cn: HR 3
+mail: hr3@example.com
+userPassword: password
+
+dn: uid=it1,ou=people,dc=example,dc=com
+objectClass: inetOrgPerson
+uid: it1
+sn: IT
+cn: IT 1
+mail: it1@example.com
+userPassword: password
+
+dn: uid=it2,ou=people,dc=example,dc=com
+objectClass: inetOrgPerson
+uid: it2
+sn: IT
+cn: IT 2
+mail: it2@example.com
+userPassword: password
+
+dn: uid=it3,ou=people,dc=example,dc=com
+objectClass: inetOrgPerson
+uid: it3
+sn: IT
+cn: IT 3
+mail: it3@example.com
+userPassword: password
+
+dn: uid=it4,ou=people,dc=example,dc=com
+objectClass: inetOrgPerson
+uid: it4
+sn: IT
+cn: IT 4
+mail: it4@example.com
+userPassword: password
+
+dn: cn=developers,ou=groups,dc=example,dc=com
+objectClass: groupOfUniqueNames
+cn: developers
+uniqueMember: uid=dev1,ou=people,dc=example,dc=com
+uniqueMember: uid=dev2,ou=people,dc=example,dc=com
+uniqueMember: uid=dev3,ou=people,dc=example,dc=com
+uniqueMember: uid=dev4,ou=people,dc=example,dc=com
+uniqueMember: uid=dev5,ou=people,dc=example,dc=com
+
+dn: cn=hr,ou=groups,dc=example,dc=com
+objectClass: groupOfUniqueNames
+cn: hr
+uniqueMember: uid=hr1,ou=people,dc=example,dc=com
+uniqueMember: uid=hr2,ou=people,dc=example,dc=com
+uniqueMember: uid=hr3,ou=people,dc=example,dc=com
+
+dn: cn=it,ou=groups,dc=example,dc=com
+objectClass: groupOfUniqueNames
+cn: it
+uniqueMember: uid=it1,ou=people,dc=example,dc=com
+uniqueMember: uid=it2,ou=people,dc=example,dc=com
+uniqueMember: uid=it3,ou=people,dc=example,dc=com
+uniqueMember: uid=it4,ou=people,dc=example,dc=com

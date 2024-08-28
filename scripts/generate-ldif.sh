@@ -15,35 +15,40 @@ dn: $LDAP_ROOT
 objectClass: top
 objectClass: dcObject
 objectClass: organization
-o: Example Corp
+o: Example Organization
 dc: example
 
-dn: ou=People,$LDAP_ROOT
+dn: ou=people,$LDAP_ROOT
+objectClass: top
 objectClass: organizationalUnit
-ou: People
+ou: people
 
-dn: ou=Groups,$LDAP_ROOT
+dn: ou=groups,$LDAP_ROOT
+objectClass: top
 objectClass: organizationalUnit
-ou: Groups
-
-dn: ou=Developers,$LDAP_ROOT
-objectClass: organizationalUnit
-ou: Developers
-
-dn: ou=HR,$LDAP_ROOT
-objectClass: organizationalUnit
-ou: HR
-
-dn: ou=IT,$LDAP_ROOT
-objectClass: organizationalUnit
-ou: IT
+ou: groups
 EOL
 
-# Add users to the People organizational unit
+# Add the admin user to the People organizational unit
+cat <<EOL >> $output_file
+
+dn: uid=admin,ou=people,$LDAP_ROOT
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: Admin User
+sn: User
+uid: admin
+mail: admin@example.com
+userPassword: admin123
+EOL
+
+# Add general users to the People organizational unit
 for i in {1..10}; do
   cat <<EOL >> $output_file
 
-dn: uid=user$i,ou=People,$LDAP_ROOT
+dn: uid=user$i,ou=people,$LDAP_ROOT
 objectClass: inetOrgPerson
 uid: user$i
 sn: User
@@ -57,7 +62,7 @@ done
 for i in {1..5}; do
   cat <<EOL >> $output_file
 
-dn: uid=dev$i,ou=Developers,$LDAP_ROOT
+dn: uid=dev$i,ou=people,$LDAP_ROOT
 objectClass: inetOrgPerson
 uid: dev$i
 sn: Developer
@@ -71,7 +76,7 @@ done
 for i in {1..3}; do
   cat <<EOL >> $output_file
 
-dn: uid=hr$i,ou=HR,$LDAP_ROOT
+dn: uid=hr$i,ou=people,$LDAP_ROOT
 objectClass: inetOrgPerson
 uid: hr$i
 sn: HR
@@ -85,7 +90,7 @@ done
 for i in {1..4}; do
   cat <<EOL >> $output_file
 
-dn: uid=it$i,ou=IT,$LDAP_ROOT
+dn: uid=it$i,ou=people,$LDAP_ROOT
 objectClass: inetOrgPerson
 uid: it$i
 sn: IT
@@ -98,29 +103,29 @@ done
 # Add groups to the Groups organizational unit
 cat <<EOL >> $output_file
 
-dn: cn=developers,ou=Groups,$LDAP_ROOT
+dn: cn=developers,ou=groups,$LDAP_ROOT
 objectClass: groupOfUniqueNames
 cn: developers
-uniqueMember: uid=dev1,ou=Developers,$LDAP_ROOT
-uniqueMember: uid=dev2,ou=Developers,$LDAP_ROOT
-uniqueMember: uid=dev3,ou=Developers,$LDAP_ROOT
-uniqueMember: uid=dev4,ou=Developers,$LDAP_ROOT
-uniqueMember: uid=dev5,ou=Developers,$LDAP_ROOT
+uniqueMember: uid=dev1,ou=people,$LDAP_ROOT
+uniqueMember: uid=dev2,ou=people,$LDAP_ROOT
+uniqueMember: uid=dev3,ou=people,$LDAP_ROOT
+uniqueMember: uid=dev4,ou=people,$LDAP_ROOT
+uniqueMember: uid=dev5,ou=people,$LDAP_ROOT
 
-dn: cn=hr,ou=Groups,$LDAP_ROOT
+dn: cn=hr,ou=groups,$LDAP_ROOT
 objectClass: groupOfUniqueNames
 cn: hr
-uniqueMember: uid=hr1,ou=HR,$LDAP_ROOT
-uniqueMember: uid=hr2,ou=HR,$LDAP_ROOT
-uniqueMember: uid=hr3,ou=HR,$LDAP_ROOT
+uniqueMember: uid=hr1,ou=people,$LDAP_ROOT
+uniqueMember: uid=hr2,ou=people,$LDAP_ROOT
+uniqueMember: uid=hr3,ou=people,$LDAP_ROOT
 
-dn: cn=it,ou=Groups,$LDAP_ROOT
+dn: cn=it,ou=groups,$LDAP_ROOT
 objectClass: groupOfUniqueNames
 cn: it
-uniqueMember: uid=it1,ou=IT,$LDAP_ROOT
-uniqueMember: uid=it2,ou=IT,$LDAP_ROOT
-uniqueMember: uid=it3,ou=IT,$LDAP_ROOT
-uniqueMember: uid=it4,ou=IT,$LDAP_ROOT
+uniqueMember: uid=it1,ou=people,$LDAP_ROOT
+uniqueMember: uid=it2,ou=people,$LDAP_ROOT
+uniqueMember: uid=it3,ou=people,$LDAP_ROOT
+uniqueMember: uid=it4,ou=people,$LDAP_ROOT
 EOL
 
 echo "LDIF file $output_file created successfully."
