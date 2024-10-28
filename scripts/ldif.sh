@@ -48,6 +48,7 @@ create_user_entry() {
     echo "cn: $cn"
     echo "sn: $sn"
     echo "mail: $username@example.com"
+    echo "userPassword: password"
     echo ""
 }
 
@@ -55,7 +56,7 @@ create_users() {
     local ou=$1
     local count=$2
     for i in $(seq 1 $count); do
-        create_user_entry $ou "user$i"
+        create_user_entry $ou "user$ou$i"
     done
 }
 
