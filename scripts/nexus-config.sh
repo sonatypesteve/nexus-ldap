@@ -5,6 +5,7 @@ password_file="sonatype-work/nexus3/admin.password"
 nexus_url="http://localhost:8081"
 status_endpoint="$nexus_url/service/rest/v1/status"
 change_password_endpoint="$nexus_url/service/rest/v1/security/users/admin/change-password"
+add_ldap_connection_endpoint="$nexus_url/service/rest/v1/security/ldap"
 
 # User and password variables
 user="admin" # Change this to the desired username
@@ -18,6 +19,11 @@ check_nexus_status() {
 # Function to change Nexus admin password
 change_admin_password() {
   curl -o /dev/null -s -w "%{http_code}\n" -u ${user}:"$1" -X PUT "$change_password_endpoint" -H 'accept: application/json' -H 'Content-Type: text/plain' -d "${new_password}"
+}
+
+# Function to add LDAP connection
+add_ldap_connection() {
+  curl -o /dev/null -s -w "%{http_code}\n" -u ${user}:${new_password} -X POST "$add_ldap_connection_endpoint" -H 'Content-Type: application/json' -d@../ldap.json
 }
 
 # Start containers
@@ -50,6 +56,11 @@ if [ "$(docker inspect "$container_name" --format '{{.State.Status}}')" = "runni
     password=$(docker exec "$container_name" cat "$password_file")
     if [ "$(change_admin_password "$password")" == "204" ]; then
       echo "${user}'s password changed successfully."
+      if [ "$(add_ldap_connection)" == "201" ]; then
+        echo "LDAP connection created successfully."
+        else
+          echo "Failed to change ${user}'s password."
+      fi
     else
       echo "Failed to change ${user}'s password."
     fi
