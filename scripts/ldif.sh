@@ -9,91 +9,82 @@ source ../.env
 # Define the output file
 output_file="../ldifs/init.ldif"
 
-# Variables
-IT_USERS=10
-DEV_USERS=15
-BUSINESS_USERS=20
-HR_USERS=8
-SALES_USERS=12
-SUPPORT_USERS=10
-ADMIN_USERS=5
+# Define groups and the number of users per group
+groups=("IT:5" "Development:3" "Business:4" "HR:2" "Sales:6" "Support:3" "Administration:4")
 
-# Functions
-create_ldif_header() {
-    echo "dn: $LDAP_ROOT"
-    echo "objectClass: top"
-    echo "objectClass: dcObject"
-    echo "objectClass: organization"
-    echo "o: Example Corp"
-    echo "dc: example"
-    echo ""
+# Base domain and organizational units
+BASE_DN="$LDAP_ROOT"
+groups_OU="ou=groups,$BASE_DN"
+USERS_OU="ou=users,$BASE_DN"
+
+# Initialize output file
+cat <<EOF > "$output_file"
+# LDIF generated for groups and assignments
+
+dn: $BASE_DN
+objectClass: top
+objectClass: dcObject
+objectClass: organization
+o: Example Corp
+dc: example
+
+dn: ou=groups,$BASE_DN
+objectClass: top
+objectClass: organizationalUnit
+ou: groups
+
+dn: ou=users,$BASE_DN
+objectClass: top
+objectClass: organizationalUnit
+ou: users
+
+EOF
+
+# Function to generate group LDIF entries with users
+generate_group_ldif() {
+  local group_name="$1"
+  local user_count="$2"
+
+  # Convert group name to lowercase for user prefix
+  local user_prefix=$(echo "$group_name" | tr '[:upper:]' '[:lower:]')
+
+  # Add users
+  for ((i=1; i<=user_count; i++)); do
+    printf -v user "${user_prefix}_user%02d" "$i"
+    echo "dn: uid=$user,$USERS_OU" >> "$output_file"
+    echo "objectClass: top" >> "$output_file"
+    echo "objectClass: person" >> "$output_file"
+    echo "objectClass: organizationalPerson" >> "$output_file"
+    echo "objectClass: inetOrgPerson" >> "$output_file"
+    echo "cn: $user""_cn" >> "$output_file"
+    echo "mail: $user""@example.com" >> "$output_file"
+    echo "sn: $user""_sn" >> "$output_file"
+    echo "uid: $user" >> "$output_file"
+    echo "userPassword: password" >> "$output_file"
+    echo >> "$output_file"
+  done
+
+  echo "dn: cn=$group_name,$groups_OU" >> "$output_file"
+  echo "objectClass: top" >> "$output_file"
+  echo "objectClass: groupOfNames" >> "$output_file"
+  echo "cn: $group_name" >> "$output_file"
+
+  # Add users to the group
+  for ((i=1; i<=user_count; i++)); do
+    printf -v user "uid=${user_prefix}_user%02d" "$i"
+    echo "member: $user,$USERS_OU" >> "$output_file"
+  done
+
+  # Add a separator for readability
+  echo >> "$output_file"
 }
 
-create_ou() {
-    local ou=$1
-    echo "dn: ou=$ou,$LDAP_ROOT"
-    echo "objectClass: organizationalUnit"
-    echo "ou: $ou"
-    echo ""
-}
+# Iterate over groups and generate LDIF entries
+for group in "${groups[@]}"; do
+  group_name="${group%%:*}"
+  user_count="${group##*:}"
+  generate_group_ldif "$group_name" "$user_count"
+done
 
-create_user_entry() {
-    local ou=$1
-    local username=$2
-    local cn="User $username"
-    local sn="Last${username}"
-    echo "dn: uid=$username,ou=$ou,$LDAP_ROOT"
-    echo "objectClass: inetOrgPerson"
-    echo "uid: $username"
-    echo "cn: $cn"
-    echo "sn: $sn"
-    echo "mail: $username@example.com"
-    echo "userPassword: password"
-    echo ""
-}
-
-create_users() {
-    local ou=$1
-    local count=$2
-    for i in $(seq 1 $count); do
-        create_user_entry $ou "user$ou$i"
-    done
-}
-
-# Main Script
-{
-    create_ldif_header
-
-    # Organizational Units
-    create_ou "IT"
-    create_ou "Development"
-    create_ou "Business"
-    create_ou "HR"
-    create_ou "Sales"
-    create_ou "Support"
-    create_ou "Administration"
-
-    # Users in IT
-    create_users "IT" $IT_USERS
-
-    # Users in Development
-    create_users "Development" $DEV_USERS
-
-    # Users in Business
-    create_users "Business" $BUSINESS_USERS
-
-    # Users in HR
-    create_users "HR" $HR_USERS
-
-    # Users in Sales
-    create_users "Sales" $SALES_USERS
-
-    # Users in Support
-    create_users "Support" $SUPPORT_USERS
-
-    # Users in Administration
-    create_users "Administration" $ADMIN_USERS
-
-} > "$output_file"
-
-echo "LDIF file $output_file has been created."
+# Print completion message
+echo "LDIF file generated: $output_file"

@@ -8,6 +8,7 @@ services:
       - LDAP_ADMIN_USERNAME=admin
       - LDAP_ADMIN_PASSWORD=admin123
       - LDAP_CUSTOM_LDIF_DIR=/ldifs
+      - LDAP_EXTRA_SCHEMAS=cosine,dyngroup,inetorgperson
       - LDAP_ENABLE_TLS=yes
       - LDAP_TLS_CERT_FILE=/opt/bitnami/openldap/certs/server.crt
       - LDAP_TLS_KEY_FILE=/opt/bitnami/openldap/certs/server.key
