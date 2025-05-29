@@ -5,18 +5,19 @@ services:
     environment:
       - BITNAMI_DEBUG=true
       - LDAP_ROOT=${LDAP_ROOT}
+      - LDAP_ADMIN_DN=cn=admin,${LDAP_ROOT}
       - LDAP_ADMIN_USERNAME=admin
       - LDAP_ADMIN_PASSWORD=admin123
-      - LDAP_CUSTOM_LDIF_DIR=/ldifs
-      - LDAP_EXTRA_SCHEMAS=cosine,dyngroup,inetorgperson
+      - LDAP_EXTRA_SCHEMAS=cosine,dyngroup,inetorgperson,nis
       - LDAP_ENABLE_TLS=yes
       - LDAP_TLS_CERT_FILE=/opt/bitnami/openldap/certs/server.crt
       - LDAP_TLS_KEY_FILE=/opt/bitnami/openldap/certs/server.key
       - LDAP_TLS_CA_FILE=/opt/bitnami/openldap/certs/ca.crt
     volumes:
       - openldap-data:/openldap-data
-      - ./ldifs:/ldifs
       - ./certs:/opt/bitnami/openldap/certs
+      - ./schemas:/schemas
+      - ./ldifs:/ldifs
 
     ports:
       - '389:1389'

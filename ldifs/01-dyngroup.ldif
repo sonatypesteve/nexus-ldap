@@ -1,0 +1,4 @@
+dn: cn=Dynamic Group,ou=groups,dc=example,dc=com
+objectClass: groupOfURLs
+cn: Dynamic Group
+memberURL: ldap:///ou=users,dc=example,dc=com??sub?(objectClass=inetOrgPerson)
