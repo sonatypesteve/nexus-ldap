@@ -11,9 +11,9 @@ This assumes you have Docker Compose installed. I use Docker Desktop and Ubuntu 
 * `./ldif.sh`
 *  `./nexus-config.sh`
 
-How to do openldap queries using curl on the Nexus container:
-* `docker exec -ti nexus-ldap /bin/bash`
-* `curl -v -u "cn=admin,dc=nexus,dc=org" "ldap://openldap:1389/ou=users,dc=nexus,dc=org?hasSubordinates,objectClass?one?(objectClass=*)"`
+How to do openldap queries using curl on the OpenLDAP container:
+* `docker exec -ti openldap /bin/bash`
+* `curl -v -u "cn=admin,dc=example,dc=com" "ldap://openldap:1389/ou=users,dc=example,dc=com?hasSubordinates,objectClass?one?(objectClass=*)"`
 
 ```
 ./nexus-config.sh
