@@ -2,15 +2,6 @@ services:
   nexus:
     image: sonatype/nexus3
     container_name: nexus
-    environment:
-      NEXUS_DATASTORE_NEXUS_JDBCURL: jdbc:postgresql://postgres/nxrm?ssl=true&sslmode=require&currentSchema=nxrm
-      NEXUS_DATASTORE_NEXUS_USERNAME: nxrm
-      NEXUS_DATASTORE_NEXUS_PASSWORD: ${DB_PASSWORD}
-      INSTALL4J_ADD_VM_PARAMS: >
-        -Xms8g
-        -Xmx8g
-        -Dnexus.licenseFile=/nexus-data/license.lic
-        -Dnexus.datastore.enabled=true
     volumes:
       - "nexus-data:/nexus-data"
       - ${LICENSE_FILE}:/nexus-data/license.lic
