@@ -12,34 +12,122 @@ dn: ou=groups,dc=example,dc=com
 objectClass: organizationalUnit
 ou: groups
 
-dn: cn=customuser,ou=users,dc=example,dc=com
-cn: User1
-cn: customuser
-sn: Bar1
+dn: cn=devuser1,ou=users,dc=example,dc=com
+cn: Dev User1
+cn: devuser1
+sn: Dev1
 objectClass: inetOrgPerson
 objectClass: posixAccount
 objectClass: shadowAccount
+employeeType: Devs
 userPassword:: Y3VzdG9tcGFzc3dvcmQ=
-uid: customuser
-uidNumber: 1000
-gidNumber: 1000
-homeDirectory: /home/customuser
+uid: devuser1
+uidNumber: 1100
+gidNumber: 1100
+homeDirectory: /home/devuser1
+mail: devuser1@example.com
 
-dn: cn=customuser2,ou=users,dc=example,dc=com
-cn: User2
-cn: customuser2
-sn: Bar2
+dn: cn=devopsuser1,ou=users,dc=example,dc=com
+cn: DevOps User1
+cn: devopsuser1
+sn: DevOps1
 objectClass: inetOrgPerson
 objectClass: posixAccount
 objectClass: shadowAccount
+employeeType: DevOps
 userPassword:: Y3VzdG9tcGFzc3dvcmQ=
-uid: customuser2
-uidNumber: 1001
-gidNumber: 1001
-homeDirectory: /home/customuser2
+uid: devopsuser1
+uidNumber: 1200
+gidNumber: 1200
+homeDirectory: /home/devopsuser1
+mail: devopsuser1@example.com
 
-dn: cn=readers,ou=users,dc=example,dc=com
-cn: readers
-objectClass: groupOfNames
-member: cn=customuser,ou=users,dc=example,dc=com
-member: cn=customuser2,ou=users,dc=example,dc=com
+dn: cn=qauser1,ou=users,dc=example,dc=com
+cn: QA User1
+cn: qauser1
+sn: QA1
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+employeeType: QA
+userPassword:: Y3VzdG9tcGFzc3dvcmQ=
+uid: qauser1
+uidNumber: 1300
+gidNumber: 1300
+homeDirectory: /home/qauser1
+mail: qauser1@example.com
+
+dn: cn=pmuser1,ou=users,dc=example,dc=com
+cn: PM User1
+cn: pmuser1
+sn: PM1
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+employeeType: PMs
+userPassword:: Y3VzdG9tcGFzc3dvcmQ=
+uid: pmuser1
+uidNumber: 1400
+gidNumber: 1400
+homeDirectory: /home/pmuser1
+mail: pmuser1@example.com
+
+dn: cn=supportuser1,ou=users,dc=example,dc=com
+cn: Support User1
+cn: supportuser1
+sn: Support1
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+employeeType: Support
+userPassword:: Y3VzdG9tcGFzc3dvcmQ=
+uid: supportuser1
+uidNumber: 1500
+gidNumber: 1500
+homeDirectory: /home/supportuser1
+mail: supportuser1@example.com
+
+dn: cn=sysadminuser1,ou=users,dc=example,dc=com
+cn: SysAdmin User1
+cn: sysadminuser1
+sn: SysAdmin1
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+employeeType: SysAdmins
+userPassword:: Y3VzdG9tcGFzc3dvcmQ=
+uid: sysadminuser1
+uidNumber: 1600
+gidNumber: 1600
+homeDirectory: /home/sysadminuser1
+mail: sysadminuser1@example.com
+
+dn: cn=networkuser1,ou=users,dc=example,dc=com
+cn: Network User1
+cn: networkuser1
+sn: Network1
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+employeeType: Network
+userPassword:: Y3VzdG9tcGFzc3dvcmQ=
+uid: networkuser1
+uidNumber: 1700
+gidNumber: 1700
+homeDirectory: /home/networkuser1
+mail: networkuser1@example.com
+
+dn: cn=securityuser1,ou=users,dc=example,dc=com
+cn: Security User1
+cn: securityuser1
+sn: Security1
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+employeeType: Security
+userPassword:: Y3VzdG9tcGFzc3dvcmQ=
+uid: securityuser1
+uidNumber: 1800
+gidNumber: 1800
+homeDirectory: /home/securityuser1
+mail: securityuser1@example.com
