@@ -59,7 +59,7 @@ if [ "$(docker inspect "$container_name" --format '{{.State.Status}}')" = "runni
       if [ "$(add_ldap_connection)" == "201" ]; then
         echo "LDAP connection created successfully."
         else
-          echo "Failed to change ${user}'s password."
+          echo "Failed to create LDAP connection."
       fi
     else
       echo "Failed to change ${user}'s password."

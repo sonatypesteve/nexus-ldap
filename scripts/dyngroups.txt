@@ -1,8 +1,8 @@
-Devs
-DevOps
-QA
-PMs
-Support
-SysAdmins
-Network
-Security
+Devs, 100, nx-repository-view-*-*-browse, nx-repository-view-*-*-read, nx-repository-view-*-*-add, nx-repository-view-*-*-edit, nx-search-read, nx-component-upload
+DevOps, 100, nx-repository-view-*-*-browse
+QA, 100, nx-repository-view-*-*-browse
+PMs, 100, nx-repository-view-*-*-browse
+Support, 100, nx-repository-view-*-*-browse
+SysAdmins, 100, nx-repository-view-*-*-browse
+Network, 100, nx-repository-view-*-*-browse
+Security, 100, nx-repository-view-*-*-browse
