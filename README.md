@@ -17,6 +17,9 @@ How to do openldap queries using curl on the OpenLDAP container:
 * `docker exec -ti openldap /bin/bash`
 * `curl -v -u "cn=admin,dc=example,dc=com" "ldap://openldap:1389/ou=users,dc=example,dc=com?hasSubordinates,objectClass?one?(objectClass=*)"`
 
+How to access Postgres database:
+* `docker exec -it postgres psql -U postgres -d postgres`
+
 ```
 ./nexus-config.sh
 [+] Running 7/7

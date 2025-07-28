@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Automatically export all variables defined in ../.env to the environment
 set -a
 source ../.env
 set +a
