@@ -21,11 +21,6 @@ change_admin_password() {
   curl -o /dev/null -s -w "%{http_code}\n" -u ${user}:"$1" -X PUT "$change_password_endpoint" -H 'accept: application/json' -H 'Content-Type: text/plain' -d "${new_password}"
 }
 
-# Function to add LDAP connection
-add_ldap_connection() {
-  curl -o /dev/null -s -w "%{http_code}\n" -u ${user}:${new_password} -X POST "$add_ldap_connection_endpoint" -H 'Content-Type: application/json' -d@../ldap.json
-}
-
 # Start containers
 docker-compose -f ../docker-compose-openldap.yaml -f ../docker-compose-postgres.yaml -f ../docker-compose-nexus.yaml up -d
 
@@ -56,11 +51,6 @@ if [ "$(docker inspect "$container_name" --format '{{.State.Status}}')" = "runni
     password=$(docker exec "$container_name" cat "$password_file")
     if [ "$(change_admin_password "$password")" == "204" ]; then
       echo "${user}'s password changed successfully."
-      if [ "$(add_ldap_connection)" == "201" ]; then
-        echo "LDAP connection created successfully."
-        else
-          echo "Failed to create LDAP connection."
-      fi
     else
       echo "Failed to change ${user}'s password."
     fi

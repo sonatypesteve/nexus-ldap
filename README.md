@@ -5,11 +5,13 @@ This assumes you have Docker Compose installed. I use Docker Desktop and Ubuntu 
 
 * Edit [.env](.env) as needed.
 * Edit docker-compose*.yaml files as needed.
-* Edit [nexus-config.sh](./scripts/nexus-config.sh) as needed.
 * `cd scripts`
 * `./certs.sh`
-* `./ldif.sh`
+* `./dyngroups.sh`
+* `./users.sh`
 *  `./nexus-config.sh`
+*  `./ldap-conn.sh`
+* `./ldap-roles.sh'`
 
 How to do openldap queries using curl on the OpenLDAP container:
 * `docker exec -ti openldap /bin/bash`
@@ -22,9 +24,9 @@ How to do openldap queries using curl on the OpenLDAP container:
  ✔ Volume "nexus-ldap_openldap-data"  Created                                                          0.0s
  ✔ Volume "nexus-ldap_pgdata"         Created                                                          0.0s
  ✔ Volume "nexus-ldap_nexus-data"     Created                                                          0.0s
- ✔ Container postgres                 Started                                                          1.0s
- ✔ Container openldap                 Started                                                          1.0s
- ✔ Container nexus                    Started                                                          1.0s
+ ✔ Container openldap                 Started                                                          0.6s
+ ✔ Container postgres                 Started                                                          0.5s
+ ✔ Container nexus                    Started                                                          0.4s
 Waiting for Nexus to start...
 Nexus is up.
 Changing admin's password...
