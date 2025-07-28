@@ -1,9 +1,11 @@
 #!/bin/bash
 
+set -a
+source ../.env
+set +a
+
 # Nexus server details
-NEXUS_URL="http://localhost:8081"
-NEXUS_USER="admin"
-NEXUS_PASS="admin123"
+NEXUS_URL="$NEXUS_URL"
 INPUT_FILE="dyngroups.txt"
 
 # Read each line from the input file
@@ -36,7 +38,7 @@ EOF
 )
 
   # Send POST request to Nexus API to create the role
-  response=$(curl -o /dev/null -s -w "%{http_code}\n" -u "$NEXUS_USER:$NEXUS_PASS" -X POST "$NEXUS_URL/service/rest/v1/security/roles" \
+  response=$(curl -o /dev/null -s -w "%{http_code}\n" -u "$ADMIN_USER:$ADMIN_PASS" -X POST "$NEXUS_URL/service/rest/v1/security/roles" \
     -H "Content-Type: application/json" \
     -d "$payload")
 

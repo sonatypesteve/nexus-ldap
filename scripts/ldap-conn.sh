@@ -1,16 +1,17 @@
 #!/bin/bash
 
+set -a
+source ../.env
+set +a
+
 # Nexus server URL
-nexus_url="http://localhost:8081"
+nexus_url="$NEXUS_URL"
 # LDAP connection endpoint
 add_ldap_connection_endpoint="$nexus_url/service/rest/v1/security/ldap"
-# Nexus admin credentials
-user="admin"
-password="admin123"
 
 # Function to add LDAP connection, returns HTTP response code
 add_ldap_connection() {
-  curl -o /dev/null -s -w "%{http_code}\n" -u ${user}:${password} -X POST "$add_ldap_connection_endpoint" -H 'Content-Type: application/json' -d@ldap.json
+  curl -o /dev/null -s -w "%{http_code}\n" -u ${ADMIN_USER}:${ADMIN_PASS} -X POST "$add_ldap_connection_endpoint" -H 'Content-Type: application/json' -d@ldap.json
 }
 
 # Call the function and store the response code

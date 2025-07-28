@@ -1,15 +1,17 @@
 #!/bin/bash
 
+set -a
+source ../.env
+set +a
+
 container_name="nexus"
 password_file="sonatype-work/nexus3/admin.password"
-nexus_url="http://localhost:8081"
-status_endpoint="$nexus_url/service/rest/v1/status"
-change_password_endpoint="$nexus_url/service/rest/v1/security/users/admin/change-password"
-add_ldap_connection_endpoint="$nexus_url/service/rest/v1/security/ldap"
+status_endpoint="$NEXUS_URL/service/rest/v1/status"
+change_password_endpoint="$NEXUS_URL/service/rest/v1/security/users/admin/change-password"
 
 # User and password variables
-user="admin" # Change this to the desired username
-new_password="admin123" # Change this to the desired new password
+user="$ADMIN_USER" # Change this to the desired username
+new_password="$ADMIN_PASS" # Change this to the desired new password
 
 # Function to check Nexus status
 check_nexus_status() {
