@@ -1,8 +1,8 @@
 Devs, 100, nx-repository-view-*-*-browse, nx-repository-view-*-*-read, nx-repository-view-*-*-add, nx-repository-view-*-*-edit, nx-search-read, nx-component-upload
-DevOps, 100, nx-repository-view-*-*-browse
-QA, 100, nx-repository-view-*-*-browse
-PMs, 100, nx-repository-view-*-*-browse
-Support, 100, nx-repository-view-*-*-browse
-SysAdmins, 100, nx-repository-view-*-*-browse
+DevOps, 100, nx-repository-view-*-*-browse, nx-repository-view-*-*-read, nx-repository-view-*-*-add, nx-repository-view-*-*-edit, nx-repository-view-*-*-delete, nx-search-read, nx-component-upload, nx-tasks-read, nx-tasks-run, nx-healthcheck-read
+QA, 100, nx-repository-view-*-*-browse, nx-repository-view-*-*-read, nx-search-read
+PMs, 100, nx-repository-view-*-*-browse, nx-search-read
+Support, 100, nx-repository-view-*-*-browse, nx-repository-view-*-*-read, nx-search-read
+SysAdmins, 100, nx-all
 Network, 100, nx-repository-view-*-*-browse
-Security, 100, nx-repository-view-*-*-browse
+Security, 100, nx-users-*, nx-roles-*, nx-privileges-*, nx-audit-read, nx-healthcheck-read, nx-settings-read
