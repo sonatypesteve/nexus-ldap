@@ -1,6 +1,6 @@
 services:
   openldap:
-    image: docker.io/bitnami/openldap:latest
+    image: bitnamilegacy/openldap:latest
     container_name: openldap
     env_file:
       - .env

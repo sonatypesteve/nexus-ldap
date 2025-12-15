@@ -4,6 +4,10 @@ services:
     container_name: postgres
     env_file:
       - .env
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_INITDB_ARGS=${POSTGRES_INITDB_ARGS}
     command:
       - "postgres"
       - "-c"
@@ -23,7 +27,7 @@ services:
       - "-c"
       - "ssl_key_file=/etc/ssl/private/ssl-cert-snakeoil.key"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql
       - ./scripts/nexus.sql:/docker-entrypoint-initdb.d/nexus.sql
     ports:
       - "5432:5432"

@@ -6,3 +6,7 @@
 /certs/server.crt
 /certs/server.csr
 /certs/server.key
+/certs/ca.srl
+/.idea/copilot.data.migration.agent.xml
+/.idea/copilot.data.migration.ask.xml
+/.idea/copilot.data.migration.edit.xml
