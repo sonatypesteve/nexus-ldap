@@ -1,6 +1,7 @@
 services:
   nexus:
-    image: sonatype/nexus3
+    #image: sonatype/nexus3
+    image: sonatype/nexus3:3.82.0
     container_name: nexus
     environment:
       - NEXUS_DATASTORE_NEXUS_JDBCURL=${NEXUS_DATASTORE_NEXUS_JDBCURL}
@@ -12,6 +13,6 @@ services:
       - ${LICENSE_FILE}:/nexus-data/license.lic
     ports:
       - "8081:8081"
-
+      - "8085:8085"
 volumes:
   nexus-data:
